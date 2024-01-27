@@ -19,22 +19,23 @@ if (isset($_GET['id'])) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $newKelas = $_POST["kelas"];
+    $newNamaKelas = $_POST["kelas"];
     $newKapasitas = $_POST["kapasitas"];
     $newStatus = $_POST["statuspeminjaman"];
 
-    $updateQuery = "UPDATE kelas SET kelas = :kelas, kapasitas = :kapasitas, statuspeminjaman = :statuspeminjaman WHERE id_kelas = :id";
+    $updateQuery = "UPDATE kelas SET nama_kelas = :nama_kelas, kapasitas_kelas = :kapasitas_kelas, status_peminjaman = :status_peminjaman WHERE id_kelas = :id";
     $updateStatement = $conn->prepare($updateQuery);
     $updateStatement->execute([
         'id' => $id,
-        'kelas' => $newKelas,
-        'kapasitas' => $newKapasitas,
-        'statuspeminjaman' => $newStatus
+        'nama_kelas' => $newNamaKelas,
+        'kapasitas_kelas' => $newKapasitas,
+        'status_peminjaman' => $newStatus
     ]);
 
     header("Location: index.php");
     exit;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-<div class="container mt-5">
+    <div class="container mt-5">
         <h2>Edit Data</h2>
         <form action="<?php echo ($_SERVER["PHP_SELF"] . "?id=" . $id); ?>" method="post">
             <div class="mb-3">
