@@ -163,14 +163,31 @@ $statuspeminjamanOptions = array_unique(array_column($jadwalmatkul, 'statuspemin
 
           <?php if ($isAdmin) : ?>
             <div style="margin-top: 20px;">
-              <h2>Admin Actions</h2>
-              <form enctype="multipart/form-data" action="upload.php" method="post">
-                <label for="file">Upload File:</label>
-                <input type="file" name="file" id="file" required>
-                <button type="submit">Upload</button>
-              </form>
+                <h2>Admin Actions</h2>
+                <form action="add_data.php" method="post">
+                    <label for="idkelas">ID Kelas:</label>
+                    <input type="text" name="idkelas" required>
+
+                    <label for="kelas">Nama Kelas:</label>
+                    <input type="text" name="kelas" required>
+                    
+                    <label for="hari">Hari:</label>
+                    <input type="text" name="hari" required>
+
+                    <label for="jam">Jam/Durasi:</label>
+                    <input type="text" name="jam" required>
+
+                    <label for="kapasitas">Kapasitas:</label>
+                    <input type="text" name="kapasitas" required>
+
+                    <label for="statuspeminjaman">Status Peminjaman:</label>
+                    <input type="text" name="statuspeminjaman" required>
+
+                    <button type="submit">Tambah Data</button>
+                </form>
             </div>
-          <?php endif; ?>
+        <?php endif; ?>
+
 
           <table class='table table-hover table-bordered '>
             <thead class='table-success'>
