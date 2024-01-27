@@ -42,10 +42,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["remove"])) {
     <div class="container mt-5">
         <h2>Remove Data</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id=" . $id); ?>" method="post">
-            <p>Are you sure you want to remove the following data?</p>
-            <p>Nama Kelas: <?php echo isset($data['kelas']) ? $data['kelas'] : ''; ?></p>
-            <p>Kapasitas: <?php echo isset($data['kapasitas']) ? $data['kapasitas'] : ''; ?></p>
-            <p>Status Peminjaman: <?php echo isset($data['statuspeminjaman']) ? $data['statuspeminjaman'] : ''; ?></p>
+        <p>Nama Kelas: <?php echo isset($data['nama_kelas']) ? htmlspecialchars($data['nama_kelas']) : ''; ?></p>
+        <p>Kapasitas: <?php echo isset($data['kapasitas_kelas']) ? htmlspecialchars($data['kapasitas_kelas']) : ''; ?></p>
+        <p>Status Peminjaman: <?php echo isset($data['status_peminjaman']) ? htmlspecialchars($data['status_peminjaman']) : ''; ?></p>
+
             <button type="submit" name="remove" class="btn btn-danger">Remove Data</button>
             <a href="index.php" class="btn btn-secondary">Cancel</a>
         </form>

@@ -54,15 +54,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form action="<?php echo ($_SERVER["PHP_SELF"] . "?id=" . $id); ?>" method="post">
             <div class="mb-3">
                 <label for="kelas" class="form-label">Nama Kelas:</label>
-                <input type="text" class="form-control" name="kelas" value="<?php echo isset($data['kelas']) ? $data['kelas'] : ''; ?>" required>
+                <input type="text" class="form-control" name="kelas" value="<?php echo isset($data['nama_kelas']) ? $data['nama_kelas'] : ''; ?>" required>
             </div>
             <div class="mb-3">
                 <label for="kapasitas" class="form-label">Kapasitas:</label>
-                <input type="text" class="form-control" name="kapasitas" value="<?php echo isset($data['kapasitas']) ? $data['kapasitas'] : ''; ?>" required>
+                <input type="text" class="form-control" name="kapasitas" value="<?php echo isset($data['kapasitas_kelas']) ? $data['kapasitas_kelas'] : ''; ?>" required>
             </div>
             <div class="mb-3">
                 <label for="statuspeminjaman" class="form-label">Status Peminjaman:</label>
-                <input type="text" class="form-control" name="statuspeminjaman" value="<?php echo isset($data['statuspeminjaman']) ? $data['statuspeminjaman'] : ''; ?>" required>
+                <input type="text" class="form-control" name="statuspeminjaman" value="<?php echo isset($data['status_peminjaman']) ? $data['status_peminjaman'] : ''; ?>" required>
             </div>
             <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
         </form>
