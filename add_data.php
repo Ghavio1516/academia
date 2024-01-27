@@ -22,8 +22,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(':statuspeminjaman', $statuspeminjaman);
 
     if ($stmt->execute()) {
-        alertWindow("Data berhasil ditambahkan. (website otomatis redirect anjay)");   
-        sleep(5);
         header("location: index.php");
     } else {
         alertWindow("Error: " . $stmt->errorInfo()[2]);   
