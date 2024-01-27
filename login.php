@@ -20,7 +20,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($_SESSION['status_user'] = $user["status_user"]) {
                 $_SESSION["user_id"] = $user["id"];
                 $_SESSION["username"] = $user["username"];
-
+                $_SESSION["display_username"] = $user["username"]; // Simpan display_username di sesi
+                
                 header("Location: index.php");
                 exit();
             } else {

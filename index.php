@@ -78,7 +78,7 @@ $dosenOptions = array_unique(array_column($jadwalmatkul, 'dosen'));
           </ul>
           <a class="navbar-brand" href="login.php">
             <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-            (Ini ambil username bisa ga sih?)
+            (ANGGAP INI USERNAME)
           </a>
         </div>
       </div>
@@ -103,7 +103,13 @@ $dosenOptions = array_unique(array_column($jadwalmatkul, 'dosen'));
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        Isi Anggota
+                      <ul>
+                        <li>Ghavio Rizky Ananda - 2207411034
+                        <li>Putra Fajar Ramadhan - 2207411046
+                        <li>Muhammad Adnan Fadilah - 2207411048
+                        <li>Naura Mufidah - 2207411052
+                        <li>Ahmad Ulul Azmi - 2207411053
+                      </ul>
                       </div>
                     </div>
                   </div>
@@ -118,7 +124,7 @@ $dosenOptions = array_unique(array_column($jadwalmatkul, 'dosen'));
         <div style="padding-top: 20px;">
           <div class="button" style="padding-bottom: 20px;">
             <form>
-              <label for="filterMatkul">Mata Kuliah:</label>
+              <label for="filterMatkul">Nama Kelas:</label>
               <select id="filterMatkul">
                 <option value="">-- All --</option>
                 <?php foreach ($matkulOptions as $option) : ?>
@@ -134,7 +140,7 @@ $dosenOptions = array_unique(array_column($jadwalmatkul, 'dosen'));
                 <?php endforeach; ?>
               </select>
 
-              <label for="filterLokasi">Lokasi:</label>
+              <label for="filterLokasi">Tipe Ruangan:</label>
               <select id="filterLokasi">
                 <option value="">-- All --</option>
                 <?php foreach ($lokasiOptions as $option) : ?>
@@ -142,7 +148,7 @@ $dosenOptions = array_unique(array_column($jadwalmatkul, 'dosen'));
                 <?php endforeach; ?>
               </select>
 
-              <label for="filterNama">Nama Dosen:</label>
+              <label for="filterNama">Status:</label>
               <select id="filterNama">
                 <option value="">-- All --</option>
                 <?php foreach ($dosenOptions as $option) : ?>
@@ -168,11 +174,11 @@ $dosenOptions = array_unique(array_column($jadwalmatkul, 'dosen'));
           <table class='table table-hover table-bordered '>
             <thead class='table-success'>
               <tr>
-                <th class="text-info">MATA KULIAH</th>
+                <th class="text-info">NAMA KELAS</th>
                 <th class="text-info">HARI</th>
                 <th class="text-info">JAM/DURASI</th>
-                <th class="text-info">LOKASI</th>
-                <th class="text-info">DOSEN</th>
+                <th class="text-info">TIPE RUANGAN</th>
+                <th class="text-info">STATUS</th>
               </tr>
             </thead>
 
