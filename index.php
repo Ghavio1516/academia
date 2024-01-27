@@ -1,14 +1,14 @@
 <?php
 session_start();
 
-include("connection.php");
-
-if (!isset($_SESSION['status_user'])) {
-  header('Location: login.php');
-  exit();
+if (!isset($_SESSION['username'])) {
+    header('Location: login.php');
+    exit();
 }
 
+include("connection.php");
 include("data.php");
+
 $isAdmin = $_SESSION['status_user'] == 'Administrator';
 
 $matkulOptions = array_unique(array_column($jadwalmatkul, 'matkul'));
@@ -26,29 +26,6 @@ $dosenOptions = array_unique(array_column($jadwalmatkul, 'dosen'));
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Peminjaman Kelas</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script>
-    function filterTable() {
-      var filterMatkul = $("#filterMatkul").val().toLowerCase();
-      var filterJam = $("#filterJam").val().toLowerCase();
-      var filterLokasi = $("#filterLokasi").val().toLowerCase();
-      var filterNama = $("#filterNama").val().toLowerCase();
-
-      $("#TableJadwal tr").each(function() {
-        var matkulText = $(this).find("td:nth-child(1)").text().toLowerCase();
-        var jamText = $(this).find("td:nth-child(3)").text().toLowerCase();
-        var lokasiText = $(this).find("td:nth-child(4)").text().toLowerCase();
-        var namaText = $(this).find("td:nth-child(5)").text().toLowerCase();
-
-        var matkulMatch = filterMatkul === '' || matkulText.includes(filterMatkul);
-        var jamMatch = filterJam === '' || jamText.includes(filterJam);
-        var lokasiMatch = filterLokasi === '' || lokasiText.includes(filterLokasi);
-        var namaMatch = filterNama === '' || namaText.includes(filterNama);
-
-        $(this).toggle(matkulMatch && jamMatch && lokasiMatch && namaMatch);
-      });
-    }
-  </script>
 </head>
 
 <body>
@@ -76,10 +53,15 @@ $dosenOptions = array_unique(array_column($jadwalmatkul, 'dosen'));
               </div>
             </li>
           </ul>
-          <a class="navbar-brand" href="login.php">
-            <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
-            (ANGGAP INI USERNAME)
-          </a>
+          <div class="btn-group">
+            <button type="button" class="btn btn-outline-success"><?= $_SESSION["username"] ?></button>
+            <button type="button" class="btn dropdown-toggle dropdown-toggle-split btn-outline-success" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     </nav>
@@ -103,13 +85,13 @@ $dosenOptions = array_unique(array_column($jadwalmatkul, 'dosen'));
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                      <ul>
-                        <li>Ghavio Rizky Ananda - 2207411034
-                        <li>Putra Fajar Ramadhan - 2207411046
-                        <li>Muhammad Adnan Fadilah - 2207411048
-                        <li>Naura Mufidah - 2207411052
-                        <li>Ahmad Ulul Azmi - 2207411053
-                      </ul>
+                        <ul class="list-unstyled">
+                          <li>Ghavio Rizky Ananda - 2207411034
+                          <li>Putra Fajar Ramadhan - 2207411046
+                          <li>Muhammad Adnan Fadilah - 2207411048
+                          <li>Naura Mufidah - 2207411052
+                          <li>Ahmad Ulul Azmi - 2207411053
+                        </ul>
                       </div>
                     </div>
                   </div>
@@ -198,6 +180,29 @@ $dosenOptions = array_unique(array_column($jadwalmatkul, 'dosen'));
       </div>
     </div>
   </div>
+  <script>
+    function filterTable() {
+      var filterMatkul = $("#filterMatkul").val().toLowerCase();
+      var filterJam = $("#filterJam").val().toLowerCase();
+      var filterLokasi = $("#filterLokasi").val().toLowerCase();
+      var filterNama = $("#filterNama").val().toLowerCase();
+
+      $("#TableJadwal tr").each(function() {
+        var matkulText = $(this).find("td:nth-child(1)").text().toLowerCase();
+        var jamText = $(this).find("td:nth-child(3)").text().toLowerCase();
+        var lokasiText = $(this).find("td:nth-child(4)").text().toLowerCase();
+        var namaText = $(this).find("td:nth-child(5)").text().toLowerCase();
+
+        var matkulMatch = filterMatkul === '' || matkulText.includes(filterMatkul);
+        var jamMatch = filterJam === '' || jamText.includes(filterJam);
+        var lokasiMatch = filterLokasi === '' || lokasiText.includes(filterLokasi);
+        var namaMatch = filterNama === '' || namaText.includes(filterNama);
+
+        $(this).toggle(matkulMatch && jamMatch && lokasiMatch && namaMatch);
+      });
+    }
+  </script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </body>
