@@ -1,57 +1,101 @@
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #34eb5b;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  font-family: "Arial", sans-serif;
+  background-color: #00796b;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 
 .login-container {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 400px;
+  height: 330px;
+  align-items: center;
+  margin-right: 50px;
 }
 
-h2 {
-    color: #333;
+.login-container img {
+  width: 70px;
+  height: 70px;
+  margin-bottom: 20px;
+  margin-right: 5px;
+}
+
+.login2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.login-container form {
+  width: 100%;
+  text-align: left;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-container input {
+  width: calc(100% - 22px);
+  padding: 10px;
+
+  box-sizing: border-box;
+}
+
+.login-container button {
+  width: 93%;
+  padding: 10px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-width: 300px;
-    margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 300px;
+  margin: auto;
 }
 
 label {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 button {
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 button:hover {
-    background-color: #0056b3;
+  background-color: #0056b3;
 }
 
 p {
-    color: red;
+  color: red;
 }

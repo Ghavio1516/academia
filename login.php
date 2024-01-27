@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt = $conn->prepare($query);
     $stmt->bindParam(':username', $username);
     $stmt->bindParam(':password', $password);
-    
+
     try {
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -20,8 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($_SESSION['status_user'] = $user["status_user"]) {
                 $_SESSION["user_id"] = $user["id"];
                 $_SESSION["username"] = $user["username"];
-                $_SESSION["display_username"] = $user["username"]; // Simpan display_username di sesi
-                
+
                 header("Location: index.php");
                 exit();
             } else {
@@ -48,20 +47,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <div class="login-container">
-        <h1>Spirit Academia V2 by Kami</h1>
-        <h2>Login</h2>
-        <?php if (isset($message)): ?>
-            <p><?php echo $message; ?></p>
-        <?php endif; ?>
-        <form method="post">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required>
-
-            <button type="submit">Login</button>
-        </form>
+        <div class="login2">
+            <img src="logoooo0.png" alt="logo">
+            <h1>PNJ Academia</h1>
+        </div>
+        <div class="login">
+            <h2>Login</h2>
+            <?php if (isset($message)) : ?>
+                <p><?php echo $message; ?></p>
+            <?php endif; ?>
+            <form method="post">
+                <input type="text" placeholder="Username" name="username" required>
+                <input type="password" placeholder="Password" name="password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
     </div>
 </body>
 
