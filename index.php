@@ -10,12 +10,31 @@ include("connection.php");
 include("data.php");
 
 $isAdmin = $_SESSION['status_user'] == 'Administrator';
+$query = "SELECT * FROM kelas";
+$result = $conn->query($query);
+
+// Menyusun data ke dalam array $jadwalmatkul
+$jadwalmatkul = array();
+if ($result !== false) {
+    while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
+        $jadwalmatkul[] = array(
+            'matkul' => $row['nama_kelas'],
+            'hari' =>  $row['hari'], 
+            'jam' =>  $row['jam'], 
+            'kapasitas' => $row['kapasitas_kelas'],
+            'statuspeminjaman' => $row['status_peminjaman']
+        );
+    }
+} else {
+    // Handle the query error if needed
+    echo "Error executing query: " . $conn->errorInfo()[2];
+}
 
 $matkulOptions = array_unique(array_column($jadwalmatkul, 'matkul'));
 $hariOptions = array_unique(array_column($jadwalmatkul, 'hari'));
 $jamOptions = array_unique(array_column($jadwalmatkul, 'jam'));
-$lokasiOptions = array_unique(array_column($jadwalmatkul, 'lokasi'));
-$dosenOptions = array_unique(array_column($jadwalmatkul, 'dosen'));
+$kapasitasOptions = array_unique(array_column($jadwalmatkul, 'kapasitas'));
+$statuspeminjamanOptions = array_unique(array_column($jadwalmatkul, 'statuspeminjaman'));
 ?>
 
 <!DOCTYPE html>
@@ -106,8 +125,8 @@ $dosenOptions = array_unique(array_column($jadwalmatkul, 'dosen'));
         <div style="padding-top: 20px;">
           <div class="button" style="padding-bottom: 20px;">
             <form>
-              <label for="filterMatkul">Nama Kelas:</label>
-              <select id="filterMatkul">
+              <label for="filterkelas">Nama Kelas:</label>
+              <select id="filterkelas">
                 <option value="">-- All --</option>
                 <?php foreach ($matkulOptions as $option) : ?>
                   <option value="<?php echo $option; ?>"><?php echo $option; ?></option>
@@ -122,18 +141,18 @@ $dosenOptions = array_unique(array_column($jadwalmatkul, 'dosen'));
                 <?php endforeach; ?>
               </select>
 
-              <label for="filterLokasi">Tipe Ruangan:</label>
-              <select id="filterLokasi">
+              <label for="filterkapasitas">Kapasitas:</label>
+              <select id="filterkapasitas">
                 <option value="">-- All --</option>
-                <?php foreach ($lokasiOptions as $option) : ?>
+                <?php foreach ($kapasitasOptions as $option) : ?>
                   <option value="<?php echo $option; ?>"><?php echo $option; ?></option>
                 <?php endforeach; ?>
               </select>
 
-              <label for="filterNama">Status:</label>
-              <select id="filterNama">
+              <label for="filterstatus">Status:</label>
+              <select id="filterstatus">
                 <option value="">-- All --</option>
-                <?php foreach ($dosenOptions as $option) : ?>
+                <?php foreach ($statuspeminjamanOptions as $option) : ?>
                   <option value="<?php echo $option; ?>"><?php echo $option; ?></option>
                 <?php endforeach; ?>
               </select>
@@ -159,22 +178,23 @@ $dosenOptions = array_unique(array_column($jadwalmatkul, 'dosen'));
                 <th class="text-info">NAMA KELAS</th>
                 <th class="text-info">HARI</th>
                 <th class="text-info">JAM/DURASI</th>
-                <th class="text-info">TIPE RUANGAN</th>
+                <th class="text-info">KAPASITAS</th>
                 <th class="text-info">STATUS</th>
               </tr>
             </thead>
 
             <tbody id="TableJadwal">
               <?php foreach ($jadwalmatkul as $key => $jadwal) : ?>
-                <tr class="<?php echo $key % 2 == 0 ? 'table-primary' : 'table-info'; ?>">
-                  <td><?php echo $jadwal['matkul']; ?></td>
-                  <td><?php echo $jadwal['hari']; ?></td>
-                  <td><?php echo $jadwal['jam']; ?></td>
-                  <td><?php echo $jadwal['lokasi']; ?></td>
-                  <td><?php echo $jadwal['dosen']; ?></td>
-                </tr>
+                  <tr class="<?php echo $key % 2 == 0 ? 'table-primary' : 'table-info'; ?>">
+                      <td><?php echo $jadwal['matkul']; ?></td>
+                      <td><?php echo $jadwal['hari']; ?></td>
+                      <td><?php echo $jadwal['jam']; ?></td>
+                      <td><?php echo $jadwal['kapasitas']; ?></td>
+                      <td><?php echo $jadwal['statuspeminjaman']; ?></td>
+                  </tr>
               <?php endforeach; ?>
-            </tbody>
+          </tbody>
+
           </table>
         </div>
       </div>
@@ -182,23 +202,23 @@ $dosenOptions = array_unique(array_column($jadwalmatkul, 'dosen'));
   </div>
   <script>
     function filterTable() {
-      var filterMatkul = $("#filterMatkul").val().toLowerCase();
+      var filterkelas = $("#filterkelas").val().toLowerCase();
       var filterJam = $("#filterJam").val().toLowerCase();
-      var filterLokasi = $("#filterLokasi").val().toLowerCase();
-      var filterNama = $("#filterNama").val().toLowerCase();
+      var filterkapasitas = $("#filterkapasitas").val().toLowerCase();
+      var filterstatus = $("#filterstatus").val().toLowerCase();
 
       $("#TableJadwal tr").each(function() {
         var matkulText = $(this).find("td:nth-child(1)").text().toLowerCase();
         var jamText = $(this).find("td:nth-child(3)").text().toLowerCase();
-        var lokasiText = $(this).find("td:nth-child(4)").text().toLowerCase();
+        var kapasitasText = $(this).find("td:nth-child(4)").text().toLowerCase();
         var namaText = $(this).find("td:nth-child(5)").text().toLowerCase();
 
-        var matkulMatch = filterMatkul === '' || matkulText.includes(filterMatkul);
+        var matkulMatch = filterkelas === '' || matkulText.includes(filterkelas);
         var jamMatch = filterJam === '' || jamText.includes(filterJam);
-        var lokasiMatch = filterLokasi === '' || lokasiText.includes(filterLokasi);
-        var namaMatch = filterNama === '' || namaText.includes(filterNama);
+        var kapasitasMatch = filterkapasitas === '' || kapasitasText.includes(filterkapasitas);
+        var namaMatch = filterstatus === '' || namaText.includes(filterstatus);
 
-        $(this).toggle(matkulMatch && jamMatch && lokasiMatch && namaMatch);
+        $(this).toggle(matkulMatch && jamMatch && kapasitasMatch && namaMatch);
       });
     }
   </script>
