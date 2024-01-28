@@ -194,6 +194,7 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
               <td>
                 <a href="edit_data.php?id=<?php echo $jadwal['id']; ?>" class="btn btn-success">Edit</a>
                 <a href="remove_data.php?id=<?php echo $jadwal['id']; ?>" class="btn btn-success">Remove</a>
+                <a href="detail_kelas.php?id=<?php echo $jadwal['id']; ?>" class="btn btn-info">Detail</a>
               </td>
             </tr>
           <?php endforeach; ?>
