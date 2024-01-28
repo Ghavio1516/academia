@@ -41,7 +41,7 @@ if (isset($_POST["login"])) {
     <div class="login-container">
         <div class="login2">
             <img src="./Meta/logoooo0.png" alt="logo">
-            <h1>PNJ Academia</h1>
+            <h1>PNJ Borrow</h1>
         </div>
         <div class="login">
             <h3>Sign In</h3>
@@ -53,7 +53,7 @@ if (isset($_POST["login"])) {
             <form method="post">
                 <input type="text" placeholder="Username" name="username" class="form-control">
                 <input type="password" placeholder="Password" name="password" class="form-control">
-                <button type="submit" name="login" class="btn btn-info" value="Login">Login</button>
+                <button style="background-color: #064e3b;" type="submit" name="login" class="btn btn-info" value="Login">Login</button>
             </form>
         </div>
     </div>

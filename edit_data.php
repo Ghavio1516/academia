@@ -55,16 +55,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-    <div class=" page-holder bg-cover">
-        <nav style="background-color: #D9D9D9;" class="  navbar navbar-expand-xl navbar-light bg-light">
-            <div class="container-fluid ">
-                <a class="navbar-brand" href="#">PNJ Borrow</a>
-                <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    <div class="page-holder bg-cover">
+        <nav style="background-color: #064e3b;" class="navbar navbar-expand-xl navbar-light">
+            <div class="container-fluid">
+                <div class="d-flex flex-row">
+                    <img src="./Meta/logoooo0.png" style="width: 40px; height: 40px;" alt="logo">
+                    <div class="p-1">
+                        <a class="navbar-brand text-white" href="index.php">PNJ Borrow</a>
+                    </div>
+                </div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-outline-success"><?= $_SESSION["username"] ?></button>
-                    <button type="button" class="btn dropdown-toggle dropdown-toggle-split btn-outline-success" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                    <button type="button" class="btn btn-success text-white"><?= $_SESSION["username"] ?></button>
+                    <button type="button" class="btn dropdown-toggle dropdown-toggle-split btn-success" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                         <span class="visually-hidden">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">
@@ -74,23 +76,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </nav>
     </div>
+
     <div class="container mt-5">
-        <h2>Edit Data</h2>
-        <form action="<?php echo ($_SERVER["PHP_SELF"] . "?id=" . $id); ?>" method="post">
-            <div class="mb-3">
-                <label for="kelas" class="form-label">Nama Kelas:</label>
-                <input type="text" class="form-control" name="kelas" value="<?php echo isset($data['nama_kelas']) ? $data['nama_kelas'] : ''; ?>" required>
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">Edit Data</h2>
+                <form action="<?php echo ($_SERVER["PHP_SELF"] . "?id=" . $id); ?>" method="post">
+                    <div class="mb-3">
+                        <label for="kelas" class="form-label">Nama Kelas:</label>
+                        <input type="text" class="form-control" name="kelas" value="<?php echo isset($data['nama_kelas']) ? $data['nama_kelas'] : ''; ?>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="kapasitas" class="form-label">Kapasitas:</label>
+                        <input type="text" class="form-control" name="kapasitas" value="<?php echo isset($data['kapasitas_kelas']) ? $data['kapasitas_kelas'] : ''; ?>" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="statuspeminjaman" class="form-label">Status Peminjaman:</label>
+                        <input type="text" class="form-control" name="statuspeminjaman" value="<?php echo isset($data['status_peminjaman']) ? $data['status_peminjaman'] : ''; ?>" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                </form>
             </div>
-            <div class="mb-3">
-                <label for="kapasitas" class="form-label">Kapasitas:</label>
-                <input type="text" class="form-control" name="kapasitas" value="<?php echo isset($data['kapasitas_kelas']) ? $data['kapasitas_kelas'] : ''; ?>" required>
-            </div>
-            <div class="mb-3">
-                <label for="statuspeminjaman" class="form-label">Status Peminjaman:</label>
-                <input type="text" class="form-control" name="statuspeminjaman" value="<?php echo isset($data['status_peminjaman']) ? $data['status_peminjaman'] : ''; ?>" required>
-            </div>
-            <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-        </form>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

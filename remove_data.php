@@ -46,15 +46,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["remove"])) {
 
 <body>
     <div class=" page-holder bg-cover">
-        <nav style="background-color: #D9D9D9;" class="  navbar navbar-expand-xl navbar-light bg-light">
-            <div class="container-fluid ">
-                <a class="navbar-brand" href="#">PNJ Borrow</a>
-                <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <nav style="background-color: #064e3b;" class="navbar navbar-expand-xl navbar-light">
+            <div class="container-fluid">
+                <div class="d-flex flex-row">
+                    <img src="./Meta/logoooo0.png" style="width: 40px; height: 40px;" alt="logo">
+                    <div class="p-1">
+                        <a class="navbar-brand text-white" href="index.php">PNJ Borrow</a>
+                    </div>
+                </div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-outline-success"><?= $_SESSION["username"] ?></button>
-                    <button type="button" class="btn dropdown-toggle dropdown-toggle-split btn-outline-success" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                    <button type="button" class="btn btn-success text-white"><?= $_SESSION["username"] ?></button>
+                    <button type="button" class="btn dropdown-toggle dropdown-toggle-split btn-success" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                         <span class="visually-hidden">Toggle Dropdown</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end">

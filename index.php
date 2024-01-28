@@ -7,7 +7,6 @@ if (!isset($_SESSION['username'])) {
 }
 
 include("connection.php");
-include("data.php");
 
 $isAdmin = $_SESSION['status_user'] == 'Administrator';
 $query = "SELECT * FROM kelas";
@@ -45,11 +44,16 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
 <body>
   <div class="page-holder bg-cover">
     <nav style="background-color: #064e3b;" class="navbar navbar-expand-xl navbar-light">
-      <div class="container-fluid ">
-        <a class="navbar-brand text-white" href="#">PNJ Borrow</a>
+      <div class="container-fluid">
+        <div class="d-flex flex-row">
+          <img src="./Meta/logoooo0.png" style="width: 40px; height: 40px;" alt="logo">
+          <div class="p-1">
+            <a class="navbar-brand text-white" href="#">PNJ Borrow</a>
+          </div>
+        </div>
         <div class="btn-group">
-          <button type="button" class="btn btn-outline-light text-white"><?= $_SESSION["username"] ?></button>
-          <button type="button" class="btn dropdown-toggle dropdown-toggle-split btn-outline-light" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+          <button type="button" class="btn btn-success text-white"><?= $_SESSION["username"] ?></button>
+          <button type="button" class="btn dropdown-toggle dropdown-toggle-split btn-success" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
             <span class="visually-hidden">Toggle Dropdown</span>
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
@@ -133,7 +137,7 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
       <?php if ($isAdmin) : ?>
         <div style="margin-top: 5px;">
           <button style="background-color: #064e3b;" type="button" class="btn mb-1 text-white" data-bs-toggle="modal" data-bs-target="#adminActionsModal">
-            Admin Actions
+            Tambah Kelas
           </button>
         </div>
       <?php endif; ?>
@@ -142,11 +146,11 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="adminActionsModalLabel">Admin Actions</h5>
+              <h5 class="modal-title" id="adminActionsModalLabel">Tambah Kelas</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              <form action="add_data.php" method="post">
+              <form action="add_data_kelas.php" method="post">
                 <div class="row g-3">
                   <div class="col-md-6">
                     <label for="idkelas" class="form-label">ID Kelas:</label>
@@ -165,7 +169,7 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
                     <input type="text" name="statuspeminjaman" class="form-control" required>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary mt-3">Tambah Data</button>
+                <button style="background-color: #064e3b;" type="submit" class="btn btn-primary mt-3">Tambah Data</button>
               </form>
             </div>
           </div>
