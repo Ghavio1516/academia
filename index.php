@@ -43,8 +43,8 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
 </head>
 
 <body>
-  <div class=" page-holder bg-cover">
-    <nav style="background-color: #064e3b;" class="  navbar navbar-expand-xl navbar-light ">
+  <div class="page-holder bg-cover">
+    <nav style="background-color: #064e3b;" class="navbar navbar-expand-xl navbar-light">
       <div class="container-fluid ">
         <a class="navbar-brand text-white" href="#">PNJ Borrow</a>
         <div class="btn-group">
@@ -60,10 +60,10 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
     </nav>
 
     <div class="filter-box" style="padding-bottom: 10px; border-radius: 30px; padding: 40px;">
-      <header class="  text-center text-white">
-        <div class="  row ">
-          <div class="  col-sm-12 mb-3 mb-sm-0 center mx-auto">
-            <div class="  card  ">
+      <header class="text-center text-white">
+        <div class="row">
+          <div class="col-sm-12 mb-3 mb-sm-0 center mx-auto">
+            <div class="card">
               <div style="border-radius: 5px; background-color: #064e3b;" class="card-body">
                 <h5 class="card-title text-success fw-bolder text-white">Peminjaman Kelas</h5>
                 <p class="card-title text-success text-white">UAS WEBPRO</p>
@@ -96,7 +96,7 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
       </header>
 
       <div style="padding-top: 30px;">
-        <div class="card width: 100%; height: 100% mx-auto  ">
+        <div class="card width: 100%; height: 100% mx-auto">
           <div style="border-radius: 5px; background-color: #064e3b;" class="card-body">
             <div class="button">
               <form class="text-white" style="margin-right: 50px;">
@@ -129,7 +129,6 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
           </div>
         </div>
       </div>
-
 
       <?php if ($isAdmin) : ?>
         <div style="margin-top: 5px;">
@@ -189,16 +188,16 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
               <td><?php echo $jadwal['kapasitas']; ?></td>
               <td><?php echo $jadwal['statuspeminjaman']; ?></td>
               <td>
-                <a href="edit_data.php?id=<?php echo $jadwal['id']; ?>" class="btn btn-primary">Edit</a>
-                <a href="remove_data.php?id=<?php echo $jadwal['id']; ?>" class="btn btn-danger">Remove</a>
+                <?php if ($isAdmin) : ?>
+                  <a href="edit_data.php?id=<?php echo $jadwal['id']; ?>" class="btn btn-primary">Edit</a>
+                  <a href="remove_data.php?id=<?php echo $jadwal['id']; ?>" class="btn btn-danger">Remove</a>
+                <?php endif; ?>
                 <a style="background-color: #064e3b;" href="detail_kelas.php?id=<?php echo $jadwal['id']; ?>" class="btn text-white ">Detail</a>
               </td>
             </tr>
           <?php endforeach; ?>
         </tbody>
       </table>
-
-
     </div>
   </div>
   </div>
