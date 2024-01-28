@@ -99,7 +99,7 @@ $jeniskelasOptions = array_unique(array_column($pinjamruangan, 'jeniskelas'));
         </div>
       </header>
 
-      <div style="padding-top: 30px;">
+      <!-- <div style="padding-top: 30px;">
         <div class="card width: 100%; height: 100% mx-auto">
           <div style="border-radius: 5px; background-color: #064e3b;" class="card-body">
             <div class="button">
@@ -132,7 +132,7 @@ $jeniskelasOptions = array_unique(array_column($pinjamruangan, 'jeniskelas'));
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
 
       <?php if ($isAdmin) : ?>
         <div style="margin-top: 5px;">

@@ -91,8 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="text" class="form-control" name="kapasitas" value="<?php echo isset($data['kapasitas_kelas']) ? $data['kapasitas_kelas'] : ''; ?>" required>
                     </div>
                     <div class="mb-3">
-                        <label for="jeniskelas" class="form-label">Status Peminjaman:</label>
-                        <input type="text" class="form-control" name="jeniskelas" value="<?php echo isset($data['jenis_kelas']) ? $data['jenis_kelas'] : ''; ?>" required>
+                        <label for="jenis_kelas" class="form-label">Jenis Kelas:</label>
+                        <input type="text" class="form-control" name="jenis_kelas" value="<?php echo isset($data['jenis_kelas']) ? $data['jenis_kelas'] : ''; ?>" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                 </form>
