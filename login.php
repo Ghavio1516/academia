@@ -44,7 +44,7 @@ if (isset($_POST["login"])) {
             <h1>PNJ Academia</h1>
         </div>
         <div class="login">
-            <h2>Login</h2>
+            <h3>Sign In</h3>
             <?php
             if (isset($message)) {
                 echo '<label class="text-danger">' . $message . '</label>';

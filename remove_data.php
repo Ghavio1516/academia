@@ -8,7 +8,7 @@ if (isset($_GET['id'])) {
     $statement = $conn->prepare($query);
     $statement->execute(['id' => $id]);
     $data = $statement->fetch(PDO::FETCH_ASSOC);
-    
+
     if (!$data) {
         echo "Data not found.";
         exit;
@@ -42,9 +42,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["remove"])) {
     <div class="container mt-5">
         <h2>Remove Data</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id=" . $id); ?>" method="post">
-        <p>Nama Kelas: <?php echo isset($data['nama_kelas']) ? htmlspecialchars($data['nama_kelas']) : ''; ?></p>
-        <p>Kapasitas: <?php echo isset($data['kapasitas_kelas']) ? htmlspecialchars($data['kapasitas_kelas']) : ''; ?></p>
-        <p>Status Peminjaman: <?php echo isset($data['status_peminjaman']) ? htmlspecialchars($data['status_peminjaman']) : ''; ?></p>
+            <div class="mb-3">
+                <label for="namakelas" class="form-label">Nama Kelas:</label>
+                <input type="text" class="form-control" name="namakelas" value="<?php echo isset($data['nama_kelas']) ? htmlspecialchars($data['nama_kelas']) : ''; ?>" required>
+            </div>
+            <div class="mb-3">
+                <label for="kapasitas" class="form-label">Kapasitas</label>
+                <input type="text" class="form-control" name="kapasitas" value="<?php echo isset($data['kapasitas_kelas']) ? htmlspecialchars($data['kapasitas_kelas']) : ''; ?>" required>
+            </div>
+            <div class="mb-3">
+                <label for="statuspeminjaman" class="form-label">Status Peminjaman</label>
+                <input type="text" class="form-control" name="statuspeminjaman" value="<?php echo isset($data['status_peminjaman']) ? htmlspecialchars($data['status_peminjaman']) : ''; ?>" required>
+            </div>
 
             <button type="submit" name="remove" class="btn btn-danger">Remove Data</button>
             <a href="index.php" class="btn btn-secondary">Cancel</a>

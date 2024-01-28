@@ -43,10 +43,10 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
 </head>
 
 <body>
-  <div style="background: url(https://cdn.discordapp.com/attachments/932451666081513552/1176136804810891284/pnj.jpg?ex=656dc5c1&is=655b50c1&hm=25cb8e9a374babdd0f16ec4f14bc066daee2b2d94ae5df681c3d27940f613b85&)" class="page-holder bg-cover">
-    <nav class="navbar navbar-expand-xl navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+  <div class=" page-holder bg-cover">
+    <nav class="  navbar navbar-expand-xl navbar-light bg-light">
+      <div class="container-fluid ">
+        <a class="navbar-brand" href="#">PNJ Borrow</a>
         <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -62,16 +62,16 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
       </div>
     </nav>
 
-    <div class="container py-5">
-      <header class="text-center text-white py-5">
-        <div class="row">
-          <div class="col-sm-12 mb-3 mb-sm-0 center mx-auto">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title text-success fw-bolder">Peminjaman Kelas</h5>
-                <p class="card-title text-success">UAS WEBPRO</p>
-                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#Anggota">
-                  <p class="card-text text-light">Kelompok 6</p>
+    <div class="filter-box" style="padding-bottom: 20px; border: 1px solid #ccc; border-radius: 15px; padding: 15px;">
+      <header class="  text-center text-white">
+        <div class="  row ">
+          <div class="  col-sm-12 mb-3 mb-sm-0 center mx-auto">
+            <div class="  card  ">
+              <div style="border-radius: 5px; background-color: #00796B;" class="card-body">
+                <h5 class="card-title text-success fw-bolder text-white">Peminjaman Kelas</h5>
+                <p class="card-title text-success text-white">UAS WEBPRO</p>
+                <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#Anggota">
+                  <p class="card-text text-light text-dark">Kelompok 6</p>
                 </button>
                 <div class="modal fade" id="Anggota" tabindex="-1" aria-labelledby="AnggotaLabel" aria-hidden="true">
                   <div class="modal-dialog modal-dialog-centered">
@@ -98,105 +98,110 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
         </div>
       </header>
 
-      <div class='container'>
-        <div style="padding-top: 20px;">
-          <div class="button" style="padding-bottom: 20px;">
-            <form>
-              <label for="filterkelas">Nama Kelas:</label>
-              <select id="filterkelas">
-                <option value="">-- All --</option>
-                <?php foreach ($namakelasOptions as $option) : ?>
-                  <option value="<?php echo $option; ?>"><?php echo $option; ?></option>
-                <?php endforeach; ?>
-              </select>
+      <div class="filter-box" style="padding-bottom: 20px; padding: 15px; ">
 
-              <label for="filterkapasitas">Kapasitas:</label>
-              <select id="filterkapasitas">
-                <option value="">-- All --</option>
-                <?php foreach ($kapasitasOptions as $option) : ?>
-                  <option value="<?php echo $option; ?>"><?php echo $option; ?></option>
-                <?php endforeach; ?>
-              </select>
+        <div style="padding-top: 60px;">
+          <div class="card width: 100%; height: 100% mx-auto  ">
+            <div style="border-radius: 5px; background-color: #00796B;" class="card-body">
+              <div class="button">
+                <form class="text-white" style="margin-right: 50px;">
+                  <label for="filterkelas">Nama Kelas:</label>
+                  <select id="filterkelas">
+                    <option value="">-- All --</option>
+                    <?php foreach ($namakelasOptions as $option) : ?>
+                      <option value="<?php echo $option; ?>"><?php echo $option; ?></option>
+                    <?php endforeach; ?>
+                  </select>
 
-              <label for="filterstatus">Status:</label>
-              <select id="filterstatus">
-                <option value="">-- All --</option>
-                <?php foreach ($statuspeminjamanOptions as $option) : ?>
-                  <option value="<?php echo $option; ?>"><?php echo $option; ?></option>
-                <?php endforeach; ?>
-              </select>
+                  <label for="filterkapasitas">Kapasitas:</label>
+                  <select id="filterkapasitas">
+                    <option value="">-- All --</option>
+                    <?php foreach ($kapasitasOptions as $option) : ?>
+                      <option value="<?php echo $option; ?>"><?php echo $option; ?></option>
+                    <?php endforeach; ?>
+                  </select>
 
-              <button type="button" onclick="filterTable()">Cari</button>
-            </form>
-          </div>
-
-          <?php if ($isAdmin) : ?>
-            <div style="margin-top: 20px;">
-              <button type="button" class="btn btn-success mb-1" data-bs-toggle="modal" data-bs-target="#adminActionsModal">
-                Admin Actions
-              </button>
-            </div>
-          <?php endif; ?>
-
-          <div class="modal fade" id="adminActionsModal" tabindex="-1" aria-labelledby="adminActionsModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="adminActionsModalLabel">Admin Actions</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <form action="add_data.php" method="post">
-                    <div class="row g-3">
-                      <div class="col-md-6">
-                        <label for="idkelas" class="form-label">ID Kelas:</label>
-                        <input type="text" name="idkelas" class="form-control" required>
-                      </div>
-                      <div class="col-md-6">
-                        <label for="kelas" class="form-label">Nama Kelas:</label>
-                        <input type="text" name="kelas" class="form-control" required>
-                      </div>
-                      <div class="col-md-6">
-                        <label for="kapasitas" class="form-label">Kapasitas:</label>
-                        <input type="text" name="kapasitas" class="form-control" required>
-                      </div>
-                      <div class="col-md-6">
-                        <label for="statuspeminjaman" class="form-label">Status Peminjaman:</label>
-                        <input type="text" name="statuspeminjaman" class="form-control" required>
-                      </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary mt-3">Tambah Data</button>
-                  </form>
-                </div>
+                  <label for="filterstatus">Status:</label>
+                  <select id="filterstatus">
+                    <option value="">-- All --</option>
+                    <?php foreach ($statuspeminjamanOptions as $option) : ?>
+                      <option value="<?php echo $option; ?>"><?php echo $option; ?></option>
+                    <?php endforeach; ?>
+                  </select>
+                  <button type="button" onclick="filterTable()">Cari</button>
+                </form>
               </div>
             </div>
           </div>
+        </div>
 
-          <table class='table table-hover table-bordered '>
-            <thead class='table-success'>
-              <tr>
-                <th class="text-info">NAMA KELAS</th>
-                <th class="text-info">KAPASITAS</th>
-                <th class="text-info">STATUS</th>
-                <th class="text-info">AKSI</th>
-              </tr>
-            </thead>
-            <tbody id="TableJadwal">
-              <?php foreach ($pinjamruangan as $key => $jadwal) : ?>
-                <tr class="<?php echo $key % 2 == 0 ? 'table-primary' : 'table-info'; ?>">
-                  <td><?php echo $jadwal['namakelas']; ?></td>
-                  <td><?php echo $jadwal['kapasitas']; ?></td>
-                  <td><?php echo $jadwal['statuspeminjaman']; ?></td>
-                  <td>
+        <?php if ($isAdmin) : ?>
+          <div style="margin-top: 20px;">
+            <button type="button" class="btn btn-success mb-1" data-bs-toggle="modal" data-bs-target="#adminActionsModal">
+              Admin Actions
+            </button>
+          </div>
+        <?php endif; ?>
+
+        <div class="modal fade" id="adminActionsModal" tabindex="-1" aria-labelledby="adminActionsModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="adminActionsModalLabel">Admin Actions</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="add_data.php" method="post">
+                  <div class="row g-3">
+                    <div class="col-md-6">
+                      <label for="idkelas" class="form-label">ID Kelas:</label>
+                      <input type="text" name="idkelas" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="kelas" class="form-label">Nama Kelas:</label>
+                      <input type="text" name="kelas" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="kapasitas" class="form-label">Kapasitas:</label>
+                      <input type="text" name="kapasitas" class="form-control" required>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="statuspeminjaman" class="form-label">Status Peminjaman:</label>
+                      <input type="text" name="statuspeminjaman" class="form-control" required>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-primary mt-3">Tambah Data</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <table class='table table-hover table-bordered '>
+          <thead class='table-success'>
+            <tr>
+              <th class="text-info">NAMA KELAS</th>
+              <th class="text-info">KAPASITAS</th>
+              <th class="text-info">STATUS</th>
+              <th class="text-info">AKSI</th>
+            </tr>
+          </thead>
+          <tbody id="TableJadwal">
+            <?php foreach ($pinjamruangan as $key => $jadwal) : ?>
+              <tr class="<?php echo $key % 2 == 0 ? 'table-primary' : 'table-info'; ?>">
+                <td><?php echo $jadwal['namakelas']; ?></td>
+                <td><?php echo $jadwal['kapasitas']; ?></td>
+                <td><?php echo $jadwal['statuspeminjaman']; ?></td>
+                <td>
                   <a href="edit_data.php?id=<?php echo $jadwal['id']; ?>" class="btn btn-success">Edit</a>
                   <a href="remove_data.php?id=<?php echo $jadwal['id']; ?>" class="btn btn-success">Remove</a>
-                  </td>
-                </tr>
-              <?php endforeach; ?>
-            </tbody>
-          </table>
+                </td>
+              </tr>
+            <?php endforeach; ?>
+          </tbody>
+        </table>
 
-        </div>
+
       </div>
     </div>
   </div>
