@@ -1,7 +1,7 @@
 function filterTable() {
   var filterkelas = $("#filterkelas").val().toLowerCase();
   var filterkapasitas = $("#filterkapasitas").val().toLowerCase();
-  var filterstatus = $("#filterstatus").val().toLowerCase();
+  var filterjenis = $("#filterjenis").val().toLowerCase();
 
   $("#TableJadwal tr").each(function () {
     var namakelasText = $(this).find("td:nth-child(1)").text().toLowerCase();
@@ -12,7 +12,7 @@ function filterTable() {
       filterkelas === "" || namakelasText.includes(filterkelas);
     var kapasitasMatch =
       filterkapasitas === "" || kapasitasText.includes(filterkapasitas);
-    var namaMatch = filterstatus === "" || namaText.includes(filterstatus);
+    var namaMatch = filterjenis === "" || namaText.includes(filterjenis);
 
     $(this).toggle(namakelasMatch && kapasitasMatch && namaMatch);
   });

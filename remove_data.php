@@ -79,8 +79,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["remove"])) {
                 <input type="text" class="form-control" name="kapasitas" value="<?php echo isset($data['kapasitas_kelas']) ? htmlspecialchars($data['kapasitas_kelas']) : ''; ?>" required>
             </div>
             <div class="mb-3">
-                <label for="statuspeminjaman" class="form-label">Status Peminjaman:</label>
-                <input type="text" class="form-control" name="statuspeminjaman" value="<?php echo isset($data['status_peminjaman']) ? htmlspecialchars($data['status_peminjaman']) : ''; ?>" required>
+                <label for="jeniskelas" class="form-label">Status Peminjaman:</label>
+                <input type="text" class="form-control" name="jeniskelas" value="<?php echo isset($data['jenis_kelas']) ? htmlspecialchars($data['jenis_kelas']) : ''; ?>" required>
             </div>
 
             <button type="submit" name="remove" class="btn btn-danger">Remove Data</button>

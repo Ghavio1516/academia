@@ -19,7 +19,7 @@ if ($result !== false) {
       'id' => $row['id_kelas'],
       'namakelas' => $row['nama_kelas'],
       'kapasitas' => $row['kapasitas_kelas'],
-      'statuspeminjaman' => $row['status_peminjaman']
+      'jenis_kelas' => $row['jenis_kelas'],
     );
   }
 } else {
@@ -28,7 +28,7 @@ if ($result !== false) {
 
 $namakelasOptions = array_unique(array_column($pinjamruangan, 'namakelas'));
 $kapasitasOptions = array_unique(array_column($pinjamruangan, 'kapasitas'));
-$statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspeminjaman'));
+$jeniskelasOptions = array_unique(array_column($pinjamruangan, 'jeniskelas'));
 ?>
 
 <!DOCTYPE html>
@@ -120,10 +120,10 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
                   <?php endforeach; ?>
                 </select>
 
-                <label for="filterstatus">Status:</label>
-                <select id="filterstatus">
+                <label for="filterjenis">Jenis Kelas:</label>
+                <select id="filterjenis">
                   <option value="">-- All --</option>
-                  <?php foreach ($statuspeminjamanOptions as $option) : ?>
+                  <?php foreach ($jeniskelasOptions as $option) : ?>
                     <option value="<?php echo $option; ?>"><?php echo $option; ?></option>
                   <?php endforeach; ?>
                 </select>
@@ -165,8 +165,8 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
                     <input type="text" name="kapasitas" class="form-control" required>
                   </div>
                   <div class="col-md-6">
-                    <label for="statuspeminjaman" class="form-label">Status Peminjaman:</label>
-                    <input type="text" name="statuspeminjaman" class="form-control" required>
+                    <label for="jeniskelas" class="form-label">Jenis Kelas:</label>
+                    <input type="text" name="jeniskelas" class="form-control" required>
                   </div>
                 </div>
                 <button style="background-color: #064e3b;" type="submit" class="btn btn-primary mt-3">Tambah Data</button>
@@ -181,7 +181,7 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
           <tr>
             <th class="text-info">NAMA KELAS</th>
             <th class="text-info">KAPASITAS</th>
-            <th class="text-info">STATUS</th>
+            <th class="text-info">Jenis Kelas</th>
             <th class="text-info">AKSI</th>
           </tr>
         </thead>
@@ -190,7 +190,7 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
             <tr class="<?php echo $key % 2 == 0 ? 'table-primary' : 'table-info'; ?> ">
               <td><?php echo $jadwal['namakelas']; ?></td>
               <td><?php echo $jadwal['kapasitas']; ?></td>
-              <td><?php echo $jadwal['statuspeminjaman']; ?></td>
+              <td><?php echo $jadwal['jenis_kelas']; ?></td>
               <td>
                 <?php if ($isAdmin) : ?>
                   <a href="edit_data.php?id=<?php echo $jadwal['id']; ?>" class="btn btn-primary">Edit</a>

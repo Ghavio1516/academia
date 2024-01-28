@@ -27,15 +27,15 @@ if (isset($_GET['id'])) {
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $newNamaKelas = $_POST["kelas"];
     $newKapasitas = $_POST["kapasitas"];
-    $newStatus = $_POST["statuspeminjaman"];
+    $newJenisKelas = $_POST["jenis_kelas"];
 
-    $updateQuery = "UPDATE kelas SET nama_kelas = :nama_kelas, kapasitas_kelas = :kapasitas_kelas, status_peminjaman = :status_peminjaman WHERE id_kelas = :id";
+    $updateQuery = "UPDATE kelas SET nama_kelas = :nama_kelas, kapasitas_kelas = :kapasitas_kelas, jenis_kelas = :jenis_kelas WHERE id_kelas = :id";
     $updateStatement = $conn->prepare($updateQuery);
     $updateStatement->execute([
         'id' => $id,
         'nama_kelas' => $newNamaKelas,
         'kapasitas_kelas' => $newKapasitas,
-        'status_peminjaman' => $newStatus
+        'jenis_kelas' => $newJenisKelas
     ]);
 
     header("Location: index.php");
@@ -91,8 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <input type="text" class="form-control" name="kapasitas" value="<?php echo isset($data['kapasitas_kelas']) ? $data['kapasitas_kelas'] : ''; ?>" required>
                     </div>
                     <div class="mb-3">
-                        <label for="statuspeminjaman" class="form-label">Status Peminjaman:</label>
-                        <input type="text" class="form-control" name="statuspeminjaman" value="<?php echo isset($data['status_peminjaman']) ? $data['status_peminjaman'] : ''; ?>" required>
+                        <label for="jeniskelas" class="form-label">Status Peminjaman:</label>
+                        <input type="text" class="form-control" name="jeniskelas" value="<?php echo isset($data['jenis_kelas']) ? $data['jenis_kelas'] : ''; ?>" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                 </form>

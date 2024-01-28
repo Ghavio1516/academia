@@ -8,6 +8,7 @@ if (!isset($_SESSION['username'])) {
 
 include("connection.php");
 $isAdmin = $_SESSION['status_user'] == 'Administrator';
+$isDosen = $_SESSION['status_user'] == 'Dosen';
 
 if (isset($_GET['id'])) {
   $kelasId = $_GET['id'];
@@ -85,15 +86,15 @@ if (isset($_GET['id'])) {
             </div>
           </div>
           <div class="mb-3 row">
-            <label for="statuspeminjaman" class="form-label col-sm-2">Status Peminjaman:</label>
+            <label for="jeniskelas" class="form-label col-sm-2">Jenis Kelas:</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" name="statuspeminjaman" value="<?php echo $classDetails['status_peminjaman']; ?>" required>
+              <input type="text" class="form-control" name="jeniskelas" value="<?php echo $classDetails['jenis_kelas']; ?>" required>
             </div>
           </div>
         </form>
       </div>
 
-      <?php if ($isAdmin) : ?>
+      <?php if ($isAdmin || $isDosen) : ?>
         <div style="margin-top: 5px;">
           <button style="background-color: #064e3b;" type="button" class="btn mb-1 text-white" data-bs-toggle="modal" data-bs-target="#adminActionsModal">
             Pesan Kelas
