@@ -46,7 +46,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["remove"])) {
 
 <body>
     <div class=" page-holder bg-cover">
-        <nav class="  navbar navbar-expand-xl navbar-light bg-light">
+        <nav style="background-color: #D9D9D9;" class="  navbar navbar-expand-xl navbar-light bg-light">
             <div class="container-fluid ">
                 <a class="navbar-brand" href="#">PNJ Borrow</a>
                 <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,6 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["remove"])) {
             </div>
         </nav>
     </div>
+
     <div class="container mt-5">
         <h2>Remove Data</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id=" . $id); ?>" method="post">
@@ -72,11 +73,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["remove"])) {
                 <input type="text" class="form-control" name="namakelas" value="<?php echo isset($data['nama_kelas']) ? htmlspecialchars($data['nama_kelas']) : ''; ?>" required>
             </div>
             <div class="mb-3">
-                <label for="kapasitas" class="form-label">Kapasitas</label>
+                <label for="kapasitas" class="form-label">Kapasitas:</label>
                 <input type="text" class="form-control" name="kapasitas" value="<?php echo isset($data['kapasitas_kelas']) ? htmlspecialchars($data['kapasitas_kelas']) : ''; ?>" required>
             </div>
             <div class="mb-3">
-                <label for="statuspeminjaman" class="form-label">Status Peminjaman</label>
+                <label for="statuspeminjaman" class="form-label">Status Peminjaman:</label>
                 <input type="text" class="form-control" name="statuspeminjaman" value="<?php echo isset($data['status_peminjaman']) ? htmlspecialchars($data['status_peminjaman']) : ''; ?>" required>
             </div>
 

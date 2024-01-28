@@ -44,15 +44,12 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
 
 <body>
   <div class=" page-holder bg-cover">
-    <nav style="background-color: #D9D9D9;" class="  navbar navbar-expand-xl navbar-light ">
+    <nav style="background-color: #064e3b;" class="  navbar navbar-expand-xl navbar-light ">
       <div class="container-fluid ">
-        <a class="navbar-brand" href="#">PNJ Borrow</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+        <a class="navbar-brand text-white" href="#">PNJ Borrow</a>
         <div class="btn-group">
-          <button type="button" class="btn btn-outline-success"><?= $_SESSION["username"] ?></button>
-          <button type="button" class="btn dropdown-toggle dropdown-toggle-split btn-outline-success" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+          <button type="button" class="btn btn-outline-light text-white"><?= $_SESSION["username"] ?></button>
+          <button type="button" class="btn dropdown-toggle dropdown-toggle-split btn-outline-light" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
             <span class="visually-hidden">Toggle Dropdown</span>
           </button>
           <ul class="dropdown-menu dropdown-menu-end">
@@ -62,12 +59,12 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
       </div>
     </nav>
 
-    <div class="filter-box" style="padding-bottom: 10px;  border-radius: 30px; padding: 50px;">
+    <div class="filter-box" style="padding-bottom: 10px; border-radius: 30px; padding: 40px;">
       <header class="  text-center text-white">
         <div class="  row ">
           <div class="  col-sm-12 mb-3 mb-sm-0 center mx-auto">
             <div class="  card  ">
-              <div style="border-radius: 5px; background-color: #00796B;" class="card-body">
+              <div style="border-radius: 5px; background-color: #064e3b;" class="card-body">
                 <h5 class="card-title text-success fw-bolder text-white">Peminjaman Kelas</h5>
                 <p class="card-title text-success text-white">UAS WEBPRO</p>
                 <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#Anggota">
@@ -100,7 +97,7 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
 
       <div style="padding-top: 30px;">
         <div class="card width: 100%; height: 100% mx-auto  ">
-          <div style="border-radius: 5px; background-color: #00796B;" class="card-body">
+          <div style="border-radius: 5px; background-color: #064e3b;" class="card-body">
             <div class="button">
               <form class="text-white" style="margin-right: 50px;">
                 <label for="filterkelas">Nama Kelas:</label>
@@ -136,7 +133,7 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
 
       <?php if ($isAdmin) : ?>
         <div style="margin-top: 5px;">
-          <button type="button" class="btn btn-success mb-1" data-bs-toggle="modal" data-bs-target="#adminActionsModal">
+          <button style="background-color: #064e3b;" type="button" class="btn mb-1 text-white" data-bs-toggle="modal" data-bs-target="#adminActionsModal">
             Admin Actions
           </button>
         </div>
@@ -177,7 +174,7 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
       </div>
 
       <table class='table table-hover table-bordered '>
-        <thead class='table-success'>
+        <thead class=" table-success ">
           <tr>
             <th class="text-info">NAMA KELAS</th>
             <th class="text-info">KAPASITAS</th>
@@ -187,14 +184,14 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
         </thead>
         <tbody id="TableJadwal">
           <?php foreach ($pinjamruangan as $key => $jadwal) : ?>
-            <tr class="<?php echo $key % 2 == 0 ? 'table-primary' : 'table-info'; ?>">
+            <tr class="<?php echo $key % 2 == 0 ? 'table-primary' : 'table-info'; ?> ">
               <td><?php echo $jadwal['namakelas']; ?></td>
               <td><?php echo $jadwal['kapasitas']; ?></td>
               <td><?php echo $jadwal['statuspeminjaman']; ?></td>
               <td>
-                <a href="edit_data.php?id=<?php echo $jadwal['id']; ?>" class="btn btn-success">Edit</a>
-                <a href="remove_data.php?id=<?php echo $jadwal['id']; ?>" class="btn btn-success">Remove</a>
-                <a href="detail_kelas.php?id=<?php echo $jadwal['id']; ?>" class="btn btn-info">Detail</a>
+                <a href="edit_data.php?id=<?php echo $jadwal['id']; ?>" class="btn btn-primary">Edit</a>
+                <a href="remove_data.php?id=<?php echo $jadwal['id']; ?>" class="btn btn-danger">Remove</a>
+                <a style="background-color: #064e3b;" href="detail_kelas.php?id=<?php echo $jadwal['id']; ?>" class="btn text-white ">Detail</a>
               </td>
             </tr>
           <?php endforeach; ?>
