@@ -1,5 +1,11 @@
 <?php
 include("connection.php");
+session_start();
+
+if (!isset($_SESSION['username'])) {
+    header('Location: login.php');
+    exit();
+}
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -8,7 +14,7 @@ if (isset($_GET['id'])) {
     $statement = $conn->prepare($query);
     $statement->execute(['id' => $id]);
     $data = $statement->fetch(PDO::FETCH_ASSOC);
-    
+
     if (!$data) {
         echo "Data not found.";
         exit;
@@ -49,6 +55,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
+    <div class=" page-holder bg-cover">
+        <nav class="  navbar navbar-expand-xl navbar-light bg-light">
+            <div class="container-fluid ">
+                <a class="navbar-brand" href="#">PNJ Borrow</a>
+                <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-outline-success"><?= $_SESSION["username"] ?></button>
+                    <button type="button" class="btn dropdown-toggle dropdown-toggle-split btn-outline-success" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+                        <span class="visually-hidden">Toggle Dropdown</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
     <div class="container mt-5">
         <h2>Edit Data</h2>
         <form action="<?php echo ($_SERVER["PHP_SELF"] . "?id=" . $id); ?>" method="post">

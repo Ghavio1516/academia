@@ -44,7 +44,7 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
 
 <body>
   <div class=" page-holder bg-cover">
-    <nav class="  navbar navbar-expand-xl navbar-light bg-light">
+    <nav style="background-color: #D9D9D9;" class="  navbar navbar-expand-xl navbar-light ">
       <div class="container-fluid ">
         <a class="navbar-brand" href="#">PNJ Borrow</a>
         <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
@@ -62,7 +62,7 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
       </div>
     </nav>
 
-    <div class="filter-box" style="padding-bottom: 20px; border: 1px solid #ccc; border-radius: 15px; padding: 15px;">
+    <div class="filter-box" style="padding-bottom: 10px;  border-radius: 30px; padding: 50px;">
       <header class="  text-center text-white">
         <div class="  row ">
           <div class="  col-sm-12 mb-3 mb-sm-0 center mx-auto">
@@ -98,112 +98,111 @@ $statuspeminjamanOptions = array_unique(array_column($pinjamruangan, 'statuspemi
         </div>
       </header>
 
-      <div class="filter-box" style="padding-bottom: 20px; padding: 15px; ">
+      <div style="padding-top: 30px;">
+        <div class="card width: 100%; height: 100% mx-auto  ">
+          <div style="border-radius: 5px; background-color: #00796B;" class="card-body">
+            <div class="button">
+              <form class="text-white" style="margin-right: 50px;">
+                <label for="filterkelas">Nama Kelas:</label>
+                <select id="filterkelas">
+                  <option value="">-- All --</option>
+                  <?php foreach ($namakelasOptions as $option) : ?>
+                    <option value="<?php echo $option; ?>"><?php echo $option; ?></option>
+                  <?php endforeach; ?>
+                </select>
 
-        <div style="padding-top: 60px;">
-          <div class="card width: 100%; height: 100% mx-auto  ">
-            <div style="border-radius: 5px; background-color: #00796B;" class="card-body">
-              <div class="button">
-                <form class="text-white" style="margin-right: 50px;">
-                  <label for="filterkelas">Nama Kelas:</label>
-                  <select id="filterkelas">
-                    <option value="">-- All --</option>
-                    <?php foreach ($namakelasOptions as $option) : ?>
-                      <option value="<?php echo $option; ?>"><?php echo $option; ?></option>
-                    <?php endforeach; ?>
-                  </select>
+                <label for="filterkapasitas">Kapasitas:</label>
+                <select id="filterkapasitas">
+                  <option value="">-- All --</option>
+                  <?php foreach ($kapasitasOptions as $option) : ?>
+                    <option value="<?php echo $option; ?>"><?php echo $option; ?></option>
+                  <?php endforeach; ?>
+                </select>
 
-                  <label for="filterkapasitas">Kapasitas:</label>
-                  <select id="filterkapasitas">
-                    <option value="">-- All --</option>
-                    <?php foreach ($kapasitasOptions as $option) : ?>
-                      <option value="<?php echo $option; ?>"><?php echo $option; ?></option>
-                    <?php endforeach; ?>
-                  </select>
-
-                  <label for="filterstatus">Status:</label>
-                  <select id="filterstatus">
-                    <option value="">-- All --</option>
-                    <?php foreach ($statuspeminjamanOptions as $option) : ?>
-                      <option value="<?php echo $option; ?>"><?php echo $option; ?></option>
-                    <?php endforeach; ?>
-                  </select>
-                  <button type="button" onclick="filterTable()">Cari</button>
-                </form>
-              </div>
+                <label for="filterstatus">Status:</label>
+                <select id="filterstatus">
+                  <option value="">-- All --</option>
+                  <?php foreach ($statuspeminjamanOptions as $option) : ?>
+                    <option value="<?php echo $option; ?>"><?php echo $option; ?></option>
+                  <?php endforeach; ?>
+                </select>
+                <button type="button" onclick="filterTable()">Cari</button>
+              </form>
             </div>
           </div>
         </div>
-
-        <?php if ($isAdmin) : ?>
-          <div style="margin-top: 20px;">
-            <button type="button" class="btn btn-success mb-1" data-bs-toggle="modal" data-bs-target="#adminActionsModal">
-              Admin Actions
-            </button>
-          </div>
-        <?php endif; ?>
-
-        <div class="modal fade" id="adminActionsModal" tabindex="-1" aria-labelledby="adminActionsModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="adminActionsModalLabel">Admin Actions</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <form action="add_data.php" method="post">
-                  <div class="row g-3">
-                    <div class="col-md-6">
-                      <label for="idkelas" class="form-label">ID Kelas:</label>
-                      <input type="text" name="idkelas" class="form-control" required>
-                    </div>
-                    <div class="col-md-6">
-                      <label for="kelas" class="form-label">Nama Kelas:</label>
-                      <input type="text" name="kelas" class="form-control" required>
-                    </div>
-                    <div class="col-md-6">
-                      <label for="kapasitas" class="form-label">Kapasitas:</label>
-                      <input type="text" name="kapasitas" class="form-control" required>
-                    </div>
-                    <div class="col-md-6">
-                      <label for="statuspeminjaman" class="form-label">Status Peminjaman:</label>
-                      <input type="text" name="statuspeminjaman" class="form-control" required>
-                    </div>
-                  </div>
-                  <button type="submit" class="btn btn-primary mt-3">Tambah Data</button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <table class='table table-hover table-bordered '>
-          <thead class='table-success'>
-            <tr>
-              <th class="text-info">NAMA KELAS</th>
-              <th class="text-info">KAPASITAS</th>
-              <th class="text-info">STATUS</th>
-              <th class="text-info">AKSI</th>
-            </tr>
-          </thead>
-          <tbody id="TableJadwal">
-            <?php foreach ($pinjamruangan as $key => $jadwal) : ?>
-              <tr class="<?php echo $key % 2 == 0 ? 'table-primary' : 'table-info'; ?>">
-                <td><?php echo $jadwal['namakelas']; ?></td>
-                <td><?php echo $jadwal['kapasitas']; ?></td>
-                <td><?php echo $jadwal['statuspeminjaman']; ?></td>
-                <td>
-                  <a href="edit_data.php?id=<?php echo $jadwal['id']; ?>" class="btn btn-success">Edit</a>
-                  <a href="remove_data.php?id=<?php echo $jadwal['id']; ?>" class="btn btn-success">Remove</a>
-                </td>
-              </tr>
-            <?php endforeach; ?>
-          </tbody>
-        </table>
-
-
       </div>
+
+
+      <?php if ($isAdmin) : ?>
+        <div style="margin-top: 5px;">
+          <button type="button" class="btn btn-success mb-1" data-bs-toggle="modal" data-bs-target="#adminActionsModal">
+            Admin Actions
+          </button>
+        </div>
+      <?php endif; ?>
+
+      <div class="modal fade" id="adminActionsModal" tabindex="-1" aria-labelledby="adminActionsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="adminActionsModalLabel">Admin Actions</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <form action="add_data.php" method="post">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <label for="idkelas" class="form-label">ID Kelas:</label>
+                    <input type="text" name="idkelas" class="form-control" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="kelas" class="form-label">Nama Kelas:</label>
+                    <input type="text" name="kelas" class="form-control" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="kapasitas" class="form-label">Kapasitas:</label>
+                    <input type="text" name="kapasitas" class="form-control" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="statuspeminjaman" class="form-label">Status Peminjaman:</label>
+                    <input type="text" name="statuspeminjaman" class="form-control" required>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Tambah Data</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <table class='table table-hover table-bordered '>
+        <thead class='table-success'>
+          <tr>
+            <th class="text-info">NAMA KELAS</th>
+            <th class="text-info">KAPASITAS</th>
+            <th class="text-info">STATUS</th>
+            <th class="text-info">AKSI</th>
+          </tr>
+        </thead>
+        <tbody id="TableJadwal">
+          <?php foreach ($pinjamruangan as $key => $jadwal) : ?>
+            <tr class="<?php echo $key % 2 == 0 ? 'table-primary' : 'table-info'; ?>">
+              <td><?php echo $jadwal['namakelas']; ?></td>
+              <td><?php echo $jadwal['kapasitas']; ?></td>
+              <td><?php echo $jadwal['statuspeminjaman']; ?></td>
+              <td>
+                <a href="edit_data.php?id=<?php echo $jadwal['id']; ?>" class="btn btn-success">Edit</a>
+                <a href="remove_data.php?id=<?php echo $jadwal['id']; ?>" class="btn btn-success">Remove</a>
+              </td>
+            </tr>
+          <?php endforeach; ?>
+        </tbody>
+      </table>
+
+
     </div>
+  </div>
   </div>
   <script src="Script.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
